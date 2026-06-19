@@ -1,8 +1,0 @@
-package FactoryPattern;
-
-public class PdfDoc implements Document{
-    public void open(){
-        System.out.println("Opening PdfDocument!!");
-    }
-    
-}
