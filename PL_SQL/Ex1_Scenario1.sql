@@ -1,0 +1,17 @@
+DECLARE
+ customer_age NUMBER;
+BEGIN
+    FOR data in (SELECT  c.CUSTOMERID, c.DOB,l.LOANID
+    FROM CUSTOMERS c join LOANS l
+     ON c.CUSTOMERID=l.CUSTOMERID)
+     LOOP
+       customer_age:=FLOOR(MONTHS_BETWEEN(SYSDATE,data.DOB)/12);
+       IF customer_age>60 THEN
+         UPDATE LOANS SET INTERESTRATE=INTERESTRATE-1 
+         WHERE LOANID=data.LOANID;
+
+         DBMS_OUTPUT.PUT_LINE('REDUCED LOANRATE FOR '||data.LOANID);
+    END IF;
+    END LOOP;
+     COMMIT;
+END;
