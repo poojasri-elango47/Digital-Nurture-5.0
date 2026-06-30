@@ -5,14 +5,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.library.service.BookService;
 
-public class MainApp {
-    
+public class LibraryManagementApp {
     public static void main(String[] args) {
-        
         ApplicationContext context =new ClassPathXmlApplicationContext("applicationContext.xml");
+           BookService service = context.getBean(BookService.class);
 
-        BookService ser=(BookService) context.getBean("bookService");
-
-        ser.DisplayBookService();
+        service.addBook();
     }
+    
 }
